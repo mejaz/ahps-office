@@ -1,0 +1,158 @@
+{% extends "ahpslayout.html" %}
+
+{% block title %}
+	Edit Student Info
+{% endblock %}
+
+{% block body %}
+	<form action="{{url_for('editStudentInfo', rnum='{0}'.format(rnum))}}" method="POST" enctype="multipart/form-data">
+		<div class='row'>
+
+			<h3>Edit Student Info</h3><br />
+
+
+			<h4>Student Info:</h4>
+
+			<div class='col-md-6'>
+				<table>
+					<tr>
+						<td><label>Roll Number</label></td>
+						<td><input type='text' name='rnum' value="{{rnum}}" readonly></td>
+					</tr>
+					<tr>
+						<td><label>First Name</label></td>
+						<td><input type='text' name='fname' value="{{ studentDict.fname }}"></td>
+					</tr>
+					<tr>
+						<td><label>Middle Name</label></td>
+						<td><input type='text' name='mname' value="{{ studentDict.mname }}"></td>
+					</tr>
+					<tr>
+						<td><label>Last Name</label></td>
+						<td><input type='text' name='lname' value="{{ studentDict.lname }}"></td>
+					</tr>
+					<tr>
+						<td><label>Gender</label></td>
+						<td><select name='sgender'>
+							{% for x in gender %}
+								<option {% if x == studentDict.studgender %} selected="selected"  {% endif %}>{{ x }}</option>
+							{% endfor %}
+						</select></td>
+					</tr>				
+					<tr>
+						<td><label>D.O.B.</label></td>
+						<td><input type='text' name='dob' class='datepicker' placeholder='Click me..' value="{{ studentDict.dob }}"></td>
+					</tr>
+
+					<tr>
+						<td><label>D.O.A.</label></td>
+						<td><input type='input' name='doa' class='datepicker' placeholder='Click me..' value="{{ studentDict.doa }}"></td>
+					</tr>
+
+					<tr>
+						<td><label>Class</label></td>
+						<td>
+							<select name='class-selected'>
+								{% for x in allClasses %}
+									<option {% if x[0] == studentDict.studclass %} selected="selected"  {% endif %}>{{ x[0] }}</option>
+								{% endfor %}
+							</select>
+							<select name='section-selected'>
+								{% for x in allSections %}
+									<option {% if x[0] == studentDict.studsec %} selected="selected"  {% endif %}>{{ x[0] }}</option>
+								{% endfor %}
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><label>Status</label></td>
+						<td>
+							<select name='status'>
+								<option {% if studentDict.studsts == 'Active' %} selected="selected" {% endif %}>Active</option>
+								<option {% if studentDict.studsts == 'In-Active' %} selected="selected" {% endif %}>In-Active</option>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class='col-md-6'>
+				<table>
+
+					<tr>
+						<td><label>Student Photo</label></td>
+					</tr>
+					<tr>
+						<td><img alt="student pic" id='student-pic-img' src="{{url_for('static', filename='images/students/' + studentDict.studpic )}}" width="350" height="350"></td>
+					</tr>
+					<tr>
+						<td>
+							<input type='file' name='student-pic' id='student-pic-input' onchange="readURL(this, 'student-pic-img');" />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<br />
+		<div class='row'>
+			<h4>Parent Info:</h4>
+			<div class='col-md-6'>
+				<table>
+					<tr>
+						<td><label>Father's Info:</label></td>
+					</tr>
+					<tr>
+						<td><input type='text'  name='fcname' placeholder='Complete Name' value="{{ parentDict.fathername }}"></td>
+						<td><input type='text' name='foccup' placeholder='Occupation..' value="{{ parentDict.fathoccp }}"></td>
+					</tr>
+					<tr>
+						<td><label>Mother's Info:</label></td>						
+					</tr>
+					<tr>
+						<td><input type='text' name='mcname' placeholder='Complete Name' value="{{ parentDict.mothername }}"></td>
+						<td><input type='text' name='moccup' placeholder='Occupation..' value="{{ parentDict.mothoccup }}"></td>
+					</tr>
+					<tr>
+						<td><label>Contact:</label></td>
+					</tr>
+					<tr>
+						<td><input type='text' name='mob-primary' placeholder='Primary' value="{{ contDict.prim }}"></td><td><input type='text' name='mob-secondary' placeholder='Secondary' value="{{ contDict.sec }}"></td>
+						<td><input type='text' name='email' placeholder='Email' value="{{ contDict.email }}"></td>
+					</tr>
+					<tr>
+						<td><label>Address:</label></td>
+					</tr>
+					<tr>
+						<td colspan='3'><textarea cols='60' rows='3' name='comp-addr' placeholder='Complete Address...'>{{ addDict.studaddr }}</textarea></td>
+					</tr>
+
+				</table>
+
+			</div>
+
+
+			<div class='col-md-6'>
+				<table>
+
+					<tr>
+						<td><label>Parent Photo</label></td>
+					</tr>
+					<tr>
+						<td><img alt="parent pic" id='parent-pic-img' src="{{url_for('static', filename='images/parents/' + studentDict.ppic )}}" width="350" height="350"></td>
+					</tr>
+					<tr>
+						<td>
+							<input type='file' name='parent-pic' id='parent-pic-input' onchange="readURL(this, 'parent-pic-img');" />
+						</td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+		<input type='submit' value='Save'>
+	</form>
+
+
+	<br /><br /><br />
+{% endblock %}

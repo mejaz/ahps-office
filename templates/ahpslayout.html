@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='jquery-ui.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='materialize.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='ahps.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='site-demos.css')}}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<title>
+		{% block title %} {% endblock %}
+	</title>
+</head>
+<body>
+
+	<div class='container-fluid cont'>
+		<div class='row head-wrapper'>
+			<div class='col-md-10'>
+				<h2><i>Daftar</i></h2>
+			</div>
+		</div>
+		<div class='row head-divider'></div>
+		<div class='row'>
+			<div class='col-md-2 nav'>
+				<ul>
+					<li><a class="waves-effect waves-light btn-large" href="{{url_for('newAdmission')}}">New Admission</a></li>
+					<li><a class="waves-effect waves-light btn-large" href="{{url_for('studentSearch')}}">Search Student</a></li>
+					<li><a class="waves-effect waves-light btn-large" href="{{url_for('addStaff')}}">Add Staff</a></li>
+					<li><a class="waves-effect waves-light btn-large" href="{{url_for('staffSearch')}}">Staff Search</a></li>
+					<li><a class="waves-effect waves-light btn-large" href="{{url_for('sendNotice')}}">Send Notice</a></li>
+<!-- 					<li><a class="waves-effect waves-light btn-large" href="#">Syllabus</a></li>
+					<li><a class="waves-effect waves-light btn-large" href="#">Update Fee</a></li>
+					<li><a class="waves-effect waves-light btn-large" href="#">Add Result</a></li>
+ -->				</ul>
+			</div>
+			<div class='col-md-10'>
+				<br />
+				{% block body %}
+
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="{{url_for('static',filename='jquery-2.0.0.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='jquery-ui.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='bootstrap.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='holder.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='ahps.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='materialize.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='jquery.validate.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='additional-methods.min.js')}}"></script>
+	<script src="{{url_for('static', filename='frame.js')}}"></script>
+	
+
+  	<script>
+	  $( function() {
+	    $( ".datepicker" ).pickadate({
+	    	selectMonths: true,
+	    	selectYears: 15
+	    });
+
+	    $('select').material_select();
+
+	    $('ul.tabs').tabs();
+	     
+	  } );
+
+
+  	</script>
+
+	<script>
+		$( ".myform" ).validate({
+			required: true,
+			rules : {
+				'mob-primary' : {
+					number : true
+				},
+				'mob-secondary' : {
+					number : true
+				
+				}
+			}
+		});
+	</script>
+
+
+</body>
+</html>

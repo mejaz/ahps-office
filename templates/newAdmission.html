@@ -1,0 +1,245 @@
+{% extends "ahpslayout.html" %}
+
+{% block title %}
+	New Admission
+{% endblock %}
+
+{% block body %}
+	<form action="{{url_for('newAdmission')}}" method="POST" enctype="multipart/form-data" class='myform'>
+		<div class='row'>
+
+			<h4 class='page-name center'>New Admission</h4>
+
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+
+					{% for msg in messages %}
+						{{ msg }}
+					{% endfor %}
+
+				{% endif %}
+			{% endwith %}
+
+
+			<h5 class='section-name'>Student Info:</h5>
+			<br /><br />
+			<div class='col-md-6'>
+				<table>
+					<tr>
+						<td class="input-field">
+							<input type='text' name='rnum' value="{{rnum}}" readonly>
+							<label>Roll Number</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="input-field">
+							<input type='text' name='fname' required>
+							<label>First Name</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="input-field">
+							<input type='text' name='mname'>
+							<label>Middle Name</label>
+						</td>
+					</tr>
+					<tr>
+						
+						<td class="input-field">
+							<input type='text' name='lname' required>
+							<label>Last Name</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="input-field">
+							<select name='sgender'>
+								<option disabled selected>Choose an Option</option>
+								{% for x in gender %}
+									<option>{{x}}</option>
+								{% endfor %}
+							</select>
+							<label>Gender</label>
+						</td>
+					</tr>				
+					<tr>
+						<td>
+							<label>D.O.B.</label>
+							<input type='date' name='dob' class='datepicker' placeholder='--- Click Me ---' required>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label>D.O.A.</label>						
+							<input type='date' name='doa' class='datepicker' placeholder='--- Click Me ---' required>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							<label>Class</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<select name='class-selected'>
+								{% for x in classes %}
+									<option>{{ x[0] }}</option>
+								{% endfor %}
+							</select>
+							<select name='section-selected'>
+								{% for x in sections %}
+									<option>{{ x[0] }}</option>
+								{% endfor %}
+							</select>
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="input-field">
+							<input type='text' name='status' value='{{sts}}' readonly>
+							<label>Status</label>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class='col-md-6'>
+				<table>
+
+					<tr>
+						<td><label>Student Photo</label></td>
+					</tr>
+					<tr>
+						<td><img alt="student pic" id='student-pic-img' src="holder.js/350x350"></td>
+					</tr>
+					<tr>
+						<td class="file-field input-field">
+							<div class="btn waves-effect waves-light">
+								<span>File</span>
+								<input type="file" name='student-pic' id='student-pic-input' onchange="readURL(this, 'student-pic-img');" >
+
+							</div>
+							<div class="file-path-wrapper">
+								<label for='student-pic'></label>
+								<input class="file-path validate" type='text'  required/>
+
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<br />
+		<div class='row'>
+			<h5 class='section-name'>Parent Info:</h5>
+			<br />
+			<div class='col-md-6'>
+				<table>
+					<tr>
+						<td>
+							<label><h6>Father's Info:</h6></label><br/>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text'  name='fcname' required>
+							<label>Complete Name</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text' name='foccup' required>
+							<label>Occupation</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label><h6>Mother's Info</h6></label><br />
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text' name='mcname' required>
+							<label>Complete Name</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text' name='moccup' required>
+							<label>Occupation</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label><h6>Contact Number</h6></label><br />
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text' name='mob-primary' maxlength='10' required>
+							<label>Primary</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text' name='mob-secondary' maxlength='10' required>
+							<label>Secondary</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='email' name='email' class="validate">
+							<label>Email</label>
+						</td>
+					</tr>
+							
+							
+							
+					</tr>
+					<tr>
+						<td class="input-field">
+							
+							<textarea id='txt' class="materialize-textarea" cols='60' rows='3' name='comp-addr' required></textarea>
+							<label for='txt'>Address:</label>
+						</td>
+					</tr>
+
+				</table>
+
+			</div>
+
+
+			<div class='col-md-6'>
+				<table>
+
+					<tr>
+						<td><label>Parent Photo</label></td>
+					</tr>
+					<tr>
+						<td><img alt="parent pic" id='parent-pic-img' src="holder.js/350x350"></td>
+					</tr>
+					<tr>
+						<td class="file-field input-field">
+							<div class="btn waves-effect waves-light">
+        						<span>File</span>
+        						<input type="file" name='parent-pic' id='parent-pic-input' onchange="readURL(this, 'parent-pic-img');" >
+      						</div>
+      						<div class="file-path-wrapper">
+								<input class="file-path" type='text'  required/>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+		<!-- <input type='submit' value='Submit Admission'> -->
+		<button class="btn waves-effect waves-light" type="submit" name="action">Submit Admission
+		</button><br />
+	</form>
+
+
+	<br /><br /><br />
+{% endblock %}

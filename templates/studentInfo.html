@@ -1,0 +1,135 @@
+{% extends "ahpslayout.html" %}
+
+{% block title %}
+	Student Info
+{% endblock %}
+
+{% block body %}
+
+	
+		<div class='row first-row'>
+
+			
+			<div class='col-md-10'>
+					{% with messages = get_flashed_messages() %}
+						{% if messages %}
+
+							{% for msg in messages %}
+								{{ msg }}
+							{% endfor %}
+
+						{% endif %}
+					{% endwith %}			
+					
+					<h4 class='center'>Student Info</h4>
+					<h5>Roll Number: {{studentDict.rollnum}}</h5>
+			</div>
+
+			<div class='col-md-2 edit-link'>
+				
+				<a class="waves-effect waves-light btn" href="{{url_for('editStudentInfo', rnum='{0}'.format(studentDict.rollnum))}}">Edit</a>
+		<!-- 		<button class="btn waves-effect waves-light" href="{{url_for('editStudentInfo', rnum='{0}'.format(studentDict.rollnum))}}">Edit</button>
+ -->			</div>	
+
+
+		</div>
+
+		<div class='row'>
+			<div class='col-md-6'>
+				<table class='my-labels'>
+
+				<tr>
+					<td>
+						<label>Name:</label>
+					</td>
+					<td>
+						<span>{{studentDict.fname}} {{studentDict.mname}} {{studentDict.lname}}</span>
+					</td>
+				</tr>
+				<tr>
+					<td><label>Father's Name:</label></td>
+					<td><span>{{ parentDict.fathername }}</span></td>
+				</tr>
+				<tr>
+					<td><label>Mother's Name:</label></td>
+					<td><span>{{ parentDict.mothername }}</span></td>
+				</tr>
+				<tr>
+					<td><label>D.O.B.</label></td>
+					<td><span>{{ studentDict.dob }}</span></td>
+				</tr>
+				<tr>
+					<td><label>D.O.A.</label></td>
+					<td><span>{{ studentDict.doa }}</span></td>
+				</tr>				
+				<tr>
+					<td><label>Class:</label></td>
+					<td><span>{{ studentDict.studclass }} - {{ studentDict.studsec }}</span></td>
+					
+				</tr>					
+				<tr>
+					<td><label>Gender:</label></td>
+					<td><span>{{ studentDict.studgender }}</span></td>
+				</tr>						
+				<tr>
+					<td><label>Status:</label></td>
+					<td><span>{{ studentDict.studsts }}</span></td>
+				</tr>
+				<tr>
+					<td><label>Address:</label></td>
+					<td><span><textarea class="materialize-textarea" cols='30' rows='3' readonly>{{ addDict.studaddr }}</textarea></span></td>
+				</tr>		
+				<tr>
+					<td><label>Contact:</label></td>
+					<td>
+						<span>
+							{{ contDict.prim }},
+							{{ contDict.sec }}
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td><label>Email</label></td>
+
+					<td><span>{{ contDict.email }}</span></td>
+				</tr>							
+				</table>
+			</div>
+			
+			<div class='col-md-5'>
+
+				<table class='my-labels'>
+
+					<tr>
+					
+						<td>
+						<div class='card pull-right'>
+
+							<div class='card-image waves-effect waves-block waves-light z-depth-3'>
+								<img src="{{url_for('static', filename='images/students/' + studentDict.studpic )}}" width="350" height="350"></img>
+							<div class='card-title'>Student</div>
+							</div>
+
+						</div>
+						</td>
+
+					</tr>
+					<tr>
+						<td>
+						<div class='card pull-right'>
+							<div class='card-image waves-effect waves-block waves-light z-depth-3'>
+								<img src="{{url_for('static', filename='images/parents/' + studentDict.ppic )}}" width="350" height="350" />
+							<div class='card-title'>Parent</div>
+						</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+	
+
+	
+
+	
+{% endblock %}

@@ -1,1 +1,139 @@
+{% extends "ahpslayout.html" %}
 
+{% block title %}
+	Add Staff
+{% endblock %}
+
+{% block body %}
+
+	<form action="{{url_for('addStaff')}}" method='POST' enctype="multipart/form-data" class='myform'>
+
+		<div class='row'>
+
+
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+
+						{% for msg in messages %}
+							<span class='flashed-msg'>{{msg}}</span>
+						{% endfor %}
+
+					{% endif %}
+				{% endwith %}
+			<h4 class="page-name center">Add Staff</h4>
+			<br />				
+			<h5 class='section-name'>Staff Details:</h5>
+			<br /><br />
+			<div class='col-md-6'>
+				<table>
+					<tr>
+						<td class='input-field'>
+							<input type='text' value="{{ idNum }}" readonly required>
+							<label>I.D.Number</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="input-field">
+
+							<input type='text' name='staffname' required/>
+							<label>Name</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>D.O.B.</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							
+							<input type='date' class='datepicker' name='dob' required />
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="input-field">
+						
+							<select name='gender' required>
+								{% for x in gender %}
+									<option>{{x}}</option>
+								{% endfor %}
+							</select>
+							<label>Gender</label>
+
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>D.O.J.</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							
+							<input type='date' class='datepicker' name='doj' required />
+							
+						</td>
+					</tr>
+					<tr>
+						<td><label>Contact info</label></td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text' placeholder='Primary Number...' name='mob-primary' maxlength='10' required>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text' placeholder='Secondary Number...' name='mob-secondary' maxlength='10' required>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type="email" placeholder='Email...' name='email'>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<textarea cols='50' rows='5' class="materialize-textarea" name='addr' required></textarea>
+							<label>Address</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type="text" name='sts' value='Active' readonly required />
+							<label>Status</label>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class='col-md-6'>
+				<table>
+
+					<tr>
+						<td><label>Staff Photo</label></td>
+					</tr>
+					<tr>
+						<td><img alt="staff pic" id='staff-pic-img' src="holder.js/350x350"></td>
+					</tr>
+					<tr>
+						<td class="file-field input-field">
+							<div class="btn waves-effect waves-light">
+        						<span>File</span>
+        						<input type="file" name='staff-pic' id='staff-pic-input' onchange="readURL(this, 'staff-pic-img');" >
+      						</div>
+      						<div class="file-path-wrapper">
+								<input class="file-path" type='text' required/>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			
+		</div>
+
+		<button class="btn waves-effect waves-light" type="submit" name="action">Submit Info</button>
+	</form>
+{% endblock %}

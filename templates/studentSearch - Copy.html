@@ -1,0 +1,87 @@
+{% extends "ahpslayout.html" %}
+
+{% block title %}
+	Student Search
+{% endblock %}
+
+{% block body %}
+	<form action="" method="POST">
+	<div class='row'>
+		<h4 class='page-name center'>Staff Search</h4>
+		<h5 class='section-name'>Search Staff By:</h5>
+		<br />
+		<div class='col-md-6'>
+			
+			<table>
+
+				<tr>
+					<td class='input-field'>
+						<input type='text' name='rnum'>
+						<label>ID Number:</label>
+					</td>
+				</tr>
+				<tr><td><i><h5>-- OR --</h5></i></td></tr>
+				<tr>
+					<td><label>Name:</label></td>
+				</tr>
+				<tr>
+					<td><input type='text' placeholder='First Name' name='fname'></td>
+				</tr>
+				
+				
+			</table>
+			<br />
+			<button type='submit' class="btn waves-effect waves-light" name='action'>Search</button>
+		</div>
+
+	</div>
+
+	</form>
+	<br />
+	<div class='row'>
+		<div class='col-md-12'>
+			<div id='search-result'>
+				
+				{% if records %}
+					<table class="bordered highlight centered">
+						<thead>
+							<tr>
+								<th>S.No.</th>
+								<th>Roll Number</th>
+								<th>First Name</th>
+								<th>Middle Name</th>
+								<th>Last Name</th>
+								<th>D.O.B.</th>
+								<th>Class</th>
+								<th>Section</th>
+							</tr>
+						</thead>
+
+						{% set count = 1 %}
+						{% for x in records %}
+						<tbody>
+							<tr class='search-row'>
+								<td>{{count}}</td>
+								<td><a class="waves-effect waves-light btn result-button" href="{{url_for('getStudentInfo', rollnumber='{0}'.format(x[0]))}}" target="_blank">{{ x[0] }}</a></td>
+								<td>{{ x[1] }}</td>
+								<td>{{ x[2] }}</td>
+								<td>{{ x[3] }}</td>
+								<td>{{ x[4] }}</td>
+								<td>{{ x[5] }}</td>
+								<td>{{ x[6] }}</td>
+							</tr>
+							{% set count = count + 1 %}
+						{%  endfor %}
+						</tbody>
+					</table>
+				{% endif %}
+
+			</div>
+		</div>
+
+		
+	</div>
+	<br /><br /><br />
+	
+
+{% endblock %}

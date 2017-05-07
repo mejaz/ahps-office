@@ -1,0 +1,76 @@
+{% extends "ahpslayout.html" %}
+
+{% block title %}
+	Send Notice
+{% endblock %}
+
+{% block body %}
+
+	<div class="row">
+		<h5 class='center'>Send Notice</h5>
+		<div class='col-md-12'>
+
+			<table>
+				<tr>
+					<td colspan="2">
+						<div class='input-field'>
+							<textarea class='materialize-textarea notice' cols='60' rows='3' data-length='160'></textarea>
+							<label>Notice</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label><h5>Send Notice to the Students</h5></label>
+
+						<br />
+
+						<label>Select Class</label>
+						<select class='list-vals' multiple>
+							<option disabled selected>Choose an option</option>
+							{% for x in classes %}
+								<option>{{x[0]}}</option>
+							{% endfor %}
+						</select>
+						<br />
+
+						<button class="btn waves-effect waves-light" onclick="getStudentList()">Get Students List</button>
+						
+					</td>
+					<td>
+						<label><h5>Send Notice to the Faculty</h5></label>
+
+						<br /><br /><br /><br /><br /><br />
+						<button class="btn waves-effect waves-light" onclick="getFacultyList()">Get Faculty List</button>
+
+						
+					</td>					
+
+
+				</tr>
+
+			</table>
+			<!-- <button class="btn waves-effect waves-light" onclick="getStudentList()">Get Students List</button> -->
+		</div>
+	</div>
+	<br />
+	<div class='row' id='all-tabs'>
+		<!-- <div class='col s12'>
+			<ul class='tabs'>
+				<li class='tab col s3'><a href="#test1">Tab 1</a></li>
+				<li class='tab col s3'><a href="#test2">Tab 2</a></li>
+				<li class='tab col s3'><a href="#test3">Tab 3</a></li>
+				<li class='tab col s3'><a href="#test4">Tab 4</a></li>
+			</ul>
+		</div>	 -->
+	
+		<!-- <div id="test1" class="col s12">Test 1</div>
+		<div id="test2" class="col s12">Test 2</div>
+		<div id="test3" class="col s12">Test 3</div>
+		<div id="test4" class="col s12">Test 4</div> -->
+	</div>
+
+	<button class="btn waves-effect waves-light" onclick="sendNoticeAll()">Send</button>
+	<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+{% endblock %}
