@@ -1,1 +1,98 @@
+td {
+	padding: 0px;
+	padding-top: 2px;
+}
 
+.section-name, .page-name {
+	margin: 0px;
+}
+
+.nav > ul > li > a {
+	width: 100%;
+	text-decoration: none;
+}
+
+.nav > ul > li > a:hover {
+	color: black;
+}
+
+.head-wrapper {
+	background-color: rgb(38, 166, 154);
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding-left:  1%;
+	color: white;
+}
+
+.cont {
+	padding: 0px;
+}
+
+.head-divider {
+	background-color: pink;
+	width: 100%;
+	height: 10px;
+	margin: 0px;
+}
+
+.result-button {
+	width: 80%;
+
+}
+
+.search-row {
+	font-size: 16px;
+}
+
+.first-row {
+	position: relative;
+}
+.edit-link {
+	position: absolute;
+	bottom: 7px;
+	right: 0;
+
+}
+
+table.my-labels > tbody > tr > td:first-child {
+	vertical-align: baseline;	
+}
+
+table.my-labels > tbody > tr > td:first-child > label {
+	font-size: 16px;
+	height: 30px;
+	min-width: 100%;
+	text-align: left;
+
+}
+
+table.my-labels > tbody > tr > td:nth-child(2) > span {
+	font-size: 16px;
+	color: black;
+	height: 30px;
+	padding-left: 10%;
+	text-align: left;
+	padding-right: 2%;
+}
+
+
+
+.card {
+	width: 350px;
+}
+
+label.error {
+
+	text-align: right;
+	right: 50px;
+	
+}
+
+.flashed-msg {
+	background-color: lightgreen;
+}
+
+.list-vals {
+	width: 60%;
+}
