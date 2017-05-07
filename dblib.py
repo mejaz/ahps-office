@@ -38,6 +38,16 @@ def insert_records(connObj, sql_stmt):
 	except Exception, e:
 		return str(e)
 
+def update_records(connObj, sql_stmt):
+	""" Updates records into table name """
+
+	try:
+		cur = connObj.cursor()
+		cur.execute(sql_stmt)
+		return 0
+	except Exception, e:
+		return str(e)
+
 def copy_files(sourceFile, destinationFile, fileType):
 	""" Copies files from Source to Destination """
 
