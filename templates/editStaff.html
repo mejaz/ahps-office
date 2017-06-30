@@ -1,0 +1,143 @@
+{% extends "ahpslayout.html" %}
+
+{% block title %}
+	Edit Staff
+{% endblock %}
+
+{% block body %}
+
+	<form action="{{url_for('editStaff', idnum='{0}'.format(staffrcds.staffid))}}" method='POST' enctype="multipart/form-data" class='myform'>
+
+		<div class='row'>
+
+
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+
+						{% for msg in messages %}
+							<span class='flashed-msg'>{{msg}}</span>
+						{% endfor %}
+
+					{% endif %}
+				{% endwith %}
+			<h4 class="page-name center">Edit Staff</h4>
+			<br />				
+			<h5 class='section-name'>Staff Details:</h5>
+			<br /><br />
+			<div class='col-md-6'>
+				<table>
+					<tr>
+						<td class='input-field'>
+							<input type='text' value="{{ staffrcds.staffid }}" readonly required>
+							<label>I.D.Number</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="input-field">
+
+							<input type='text' name='staffname' value='{{ staffrcds.staffnm }}' required/>
+							<label>Name</label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>D.O.B.</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							
+							<input type='date' class='datepicker' name='dob' value='{{ staffrcds.staffdob }}' required />
+							
+						</td>
+					</tr>
+					<tr>
+						<td class="input-field">
+						
+							<select name='gender' value='{{ staffrcds.staffgen }}' required>
+								{% for x in gender %}
+									<option {% if x == staffrcds.staffgen %} selected="selected"  {% endif %}>{{ x }}</option>
+								{% endfor %}
+							</select>
+							<label>Gender</label>
+
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>D.O.J.</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							
+							<input type='date' class='datepicker' name='doj' value='{{ staffrcds.staffdoj }}' required />
+							
+						</td>
+					</tr>
+					<tr>
+						<td><label>Contact info</label></td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text' placeholder='Primary Number...' name='mob-primary' value='{{ staffrcds.staffprim }}' maxlength='10' required>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type='text' placeholder='Secondary Number...' name='mob-secondary' value='{{ staffrcds.staffsec }}' maxlength='10' required>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<input type="email" placeholder='Email...' value='{{ staffrcds.staffemail }}' name='email'>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<textarea cols='50' rows='5' class="materialize-textarea" name='addr' required>{{ staffrcds.staffaddr }}</textarea>
+							<label>Address</label>
+						</td>
+					</tr>
+					<tr>
+						<td class='input-field'>
+							<select name='status'>
+								<option {% if staffrcds.staffsts == 'Active' %} selected="selected" {% endif %}>Active</option>
+								<option {% if staffrcds.staffsts == 'In-Active' %} selected="selected" {% endif %}>In-Active</option>
+							</select>
+							<label>Status</label>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class='col-md-6'>
+				<table>
+
+					<tr>
+						<td><label>Staff Photo</label></td>
+					</tr>
+					<tr>
+						<td><img alt="staff pic" id='staff-pic-img' src="{{url_for('static', filename='images/staff/' + staffrcds.staffpic )}}"
+						width="350" height="350"></td>
+					</tr>
+					<tr>
+						<td class="file-field input-field">
+							<div class="btn waves-effect waves-light">
+        						<span>File</span>
+        						<input type="file" name='staff-pic' id='staff-pic-input' onchange="readURL(this, 'staff-pic-img');" >
+      						</div>
+      						<div class="file-path-wrapper">
+								<input class="file-path" type='text' required/>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+			
+		</div>
+
+		<button class="btn waves-effect waves-light" type="submit" name="action">Save</button>
+	</form>
+{% endblock %}
